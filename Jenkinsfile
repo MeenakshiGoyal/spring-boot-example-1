@@ -30,6 +30,29 @@ pipeline{
                     sh "mvn package"
                 }
             }
+           stage('Ok') 
+
+           {
+
+            steps {
+
+                echo "Ok"
+
+            }
+
+           }
+
+       }
+
+    post {
+
+        always {
+
+            emailext body: 'abcd', subject: 'abcd', to: 'mansi.wisethink@gmail.com'
+
+           }
+
+    }
         
     }
  
