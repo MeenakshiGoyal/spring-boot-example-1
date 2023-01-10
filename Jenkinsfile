@@ -175,7 +175,7 @@ pipeline{
 
         always {
 
-            emailext body: 'abcd', subject: 'abcd', to: 'mansi.wisethink@gmail.com'
+            emailext body: 'abcd', subject: 'abcd', to: 'meenakshi.goyal@knoldus.com'
 
            }
 
