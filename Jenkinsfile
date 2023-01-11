@@ -1,137 +1,34 @@
 pipeline{
-
-
-
-
     agent any
-
-
-
-
     tools { 
-
-
-
-
         maven 'maven3'
-
-
-
-
     }
-
-
-
-
     stages
-
-
-
-
        {
-
-
-
-
             stage("clean")
-
-
-
-
             {
-
-
-
-
                 steps{
-
-
-
-
                     sh "mvn clean"
-
-
-
-
                 }
 
-
-
-
             }
-
-
-
-
             stage("Build")
-
-
-
-
             {
-
-
-
-
                 steps{
-
-
-
-
-                    sh "mvn compile"
-
-
-
-
+                   sh "mvn compile"
                 }
-
-
-
-
-                
-
-
-
-
             }
-
-
-
-
             stage("TEST")
 
-
-
-
             {
-
-
-
-
                 steps{
-
-
-
-
                     sh "mvn test"
-
-
-
 
                 }
 
-
-
-
             }
 
-
-
-
             stage("package")
-
-
-
 
             {
 
@@ -166,6 +63,22 @@ pipeline{
             }
 
            }
+            stage('Parallel and archiving') {
+          parallel {
+
+            stage('Test'){
+              steps {
+               sh 'mvn test'
+              }
+            }
+             stage('Archiving') {
+              steps {
+               sh 'echo "Artifact" > test1.txt'
+                archiveArtifacts artifacts: 'test1.txt'
+                }
+              }
+          }
+        }
 
        }
 
