@@ -86,13 +86,13 @@ pipeline{
 
     post {
         success{
-                email to: "meenakshi.goyal@knoldus.com",
+                emailext to: "meenakshi.goyal@knoldus.com",
                 subject: "Test Email Sucess",
                 body: "Test Success"
             }
 
             failure{
-                email to: "meenakshi.goyal@knoldus.com",
+                emailext to: "meenakshi.goyal@knoldus.com",
                 subject: "Test Email Failure",
                 body: "Test Failure"
             }
